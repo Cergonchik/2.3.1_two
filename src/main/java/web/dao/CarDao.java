@@ -7,5 +7,5 @@ import java.util.List;
 
 @Component
 public interface CarDao {
-    public List<Car> showCarsCount(int count);
+    public List<Car> getCarsCount(int count);
 }

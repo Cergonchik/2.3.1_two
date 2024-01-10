@@ -20,7 +20,7 @@ public class CarDaolmpl implements CarDao {
     }
 
     @Override
-    public List<Car> showCarsCount(int count) {
+    public List<Car> getCarsCount(int count) {
         List<Car> carListCount;
         if (count > 0 && count < 5) {
             carListCount = carList.stream().limit(count).toList();

@@ -7,7 +7,7 @@
 </head>
 <body>
 <hr>
-<table border="11">
+<table border="5">
 
     <tr>
         <th>Model</th>
@@ -18,9 +18,9 @@
 
 
     <tr th:each="car : ${cars}">
-        <td th:text="${car.getModel()}">xXX</td>
-        <td th:text="${car.getSeries()}">XxX</td>
-        <td th:text="${car.getCarYear()}">XXx</td>
+        <td th:text="${car.getModel()}"></td>
+        <td th:text="${car.getSeries()}"></td>
+        <td th:text="${car.getCarYear()}"></td>
     </tr>
 
 

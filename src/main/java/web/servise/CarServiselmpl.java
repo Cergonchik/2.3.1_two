@@ -10,11 +10,14 @@ import java.util.List;
 
 @Component
 public class CarServiselmpl implements CarService {
+    private final CarDao carDao;
     @Autowired
-    private CarDao carDao;
+    public CarServiselmpl(CarDao carDao) {
+        this.carDao = carDao;
+    }
 
     @Override
     public List<Car> getCars(int count) {
-        return carDao.showCarsCount(count);
+        return carDao.getCarsCount(count);
     }
 }
