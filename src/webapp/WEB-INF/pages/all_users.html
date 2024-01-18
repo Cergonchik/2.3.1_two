@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+
+<table border="5">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+    </tr>
+
+    <tr th:each="u : ${allUsers}">
+        <td th:text="${u.getId()}"></td>
+        <td th:text="${u.getName()}"></td>
+        <td th:text="${u.getSurname()}"></td>
+
+    </tr>
+
+    hello <a href="update_user.html">Update</a>
+    or <a href="delete_user.html">Delete</a>
+    or <a href="creat_user">Add user</a>
+
+</table>
+
+
+</body>
+</html>
