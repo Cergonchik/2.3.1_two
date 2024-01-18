@@ -23,25 +23,30 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService usersService) {
         this.userService = usersService;
     }
 
-    @GetMapping( "/allUsers")
+    @GetMapping(value = "/")                            //index
     public String getAllUsers(Model model) {
         List<User> allUsers = userService.getAllUsers();
-        model.addAttribute("all_users", allUsers);
+        model.addAttribute("allUsers", allUsers);
         return "all_users";
     }
     //------------------------------
-    @GetMapping("/user")
+    @GetMapping("/creat_user")
     public String getCreatUser(Model model) {
          model.addAttribute("user", new User());
-        return "all_users";                                             //new Person
+        return "creat_user";                                             //new Person
     }
 
+    @PostMapping()
+    public String getAddUser(@ModelAttribute("user") User user) {        //creat
+        userService.addUser(user);
+        return "redirect:/";
+    }
 
 }

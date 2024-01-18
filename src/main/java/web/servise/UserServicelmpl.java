@@ -38,7 +38,7 @@ public class UserServicelmpl implements UserService {
     public void updateUser(User user) {
         userDao.updateUser(user);
     }
-    @Transactional
+
     @Override
     public User getUser(Long userId) {
         return userDao.getUser(userId);
