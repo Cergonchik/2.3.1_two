@@ -15,8 +15,6 @@
         <th>CarYear</th>
     </tr>
 
-
-
     <tr th:each="car : ${cars}">
         <td th:text="${car.getModel()}"></td>
         <td th:text="${car.getSeries()}"></td>

@@ -2,10 +2,10 @@ package web.servise;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
 import web.model.User;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -20,27 +20,32 @@ public class UserServicelmpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 
     @Override
+    @Transactional
     public void addUser(User user) {
         userDao.addUser(user);
     }
 
     @Override
-    public void deleteUser(Long userId) {
+    @Transactional
+    public void deleteUser(int userId) {
         userDao.deleteUser(userId);
     }
 
     @Override
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+    @Transactional
+    public void updateUser(int id, User user) {
+        userDao.updateUser(id, user);
     }
 
     @Override
-    public User getUser(Long userId) {
+    @Transactional
+    public User getUser(int userId) {
         return userDao.getUser(userId);
     }
 }

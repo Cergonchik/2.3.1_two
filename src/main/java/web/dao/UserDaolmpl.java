@@ -28,17 +28,22 @@ public class UserDaolmpl implements UserDao {
     }
 
     @Override
-    public void deleteUser(Long userId) {
+    public void deleteUser(int userId) {
         entityManager.remove(entityManager.find(User.class, userId));
     }
 
     @Override
-    public void updateUser(User user) {
-        entityManager.merge(user);
+    public void updateUser(int id, User user) {
+        User user1 = entityManager.find(User.class, id);
+        if (user1 != null) {
+            user1.setName(user.getName());
+            user1.setSurname(user.getSurname());
+            entityManager.merge(user1);
+        }
     }
 
     @Override
-    public User getUser(Long userId) {
+    public User getUser(int userId) {
         return entityManager.find(User.class, userId);
     }
 }

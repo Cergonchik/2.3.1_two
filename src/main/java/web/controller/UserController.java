@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.servise.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -36,17 +37,38 @@ public class UserController {
         model.addAttribute("allUsers", allUsers);
         return "all_users";
     }
-    //------------------------------
+    //------------------------------  creat
     @GetMapping("/creat_user")
     public String getCreatUser(Model model) {
          model.addAttribute("user", new User());
-        return "creat_user";                                             //new Person
+        return "creat_user";
     }
 
     @PostMapping()
-    public String getAddUser(@ModelAttribute("user") User user) {        //creat
-        userService.addUser(user);
+    public String getAddUser(@ModelAttribute("user") User user1) {
+        userService.addUser(user1);
         return "redirect:/";
     }
-
+    //------------------------------------- delete
+ @GetMapping("/delete_user")
+    public String getWhatDeleteUser(int userId, Model model) {
+        model.addAttribute("userDelete", userService.getUser(userId));
+        return "delete_user";
+    }
+    @DeleteMapping("/delete_user")
+    public String getDeleteUser(@RequestParam("id") int userId) {
+        userService.deleteUser(userId);
+        return "redirect:/";
+    }
+    //-------------------------------------------- update
+    @GetMapping("/update_user")
+    public String getWhatUpdateUser(@RequestParam("id") int userId, Model model) {
+        model.addAttribute("userUpdate", userService.getUser(userId));
+        return "update_user";
+    }
+    @PatchMapping("/update_user")
+    public String getUpdateUser(@RequestParam("id") int id, @ModelAttribute("userUpdate") @Valid User user1) {
+        userService.updateUser(id, user1);
+        return "redirect:/";
+    }
 }
