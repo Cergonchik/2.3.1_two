@@ -1,22 +1,15 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-
-import org.springframework.web.bind.annotation.GetMapping;
-
-import web.model.User;
-
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import web.model.User;
+import org.springframework.web.bind.annotation.GetMapping;
 import web.servise.UserService;
+import web.model.User;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -51,7 +44,7 @@ public class UserController {
     }
     //------------------------------------- delete
  @GetMapping("/delete_user")
-    public String getWhatDeleteUser(int userId, Model model) {
+    public String getWhatDeleteUser(@RequestParam("id") int userId, Model model) {
         model.addAttribute("userDelete", userService.getUser(userId));
         return "delete_user";
     }

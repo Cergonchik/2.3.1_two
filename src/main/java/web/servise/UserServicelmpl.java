@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class UserServicelmpl implements UserService {
 
-    private final UserDao userDao;
+    private UserDao userDao;
 
     @Autowired
     public UserServicelmpl(UserDao userDao) {
@@ -20,7 +20,7 @@ public class UserServicelmpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
@@ -44,7 +44,7 @@ public class UserServicelmpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public User getUser(int userId) {
         return userDao.getUser(userId);
     }
