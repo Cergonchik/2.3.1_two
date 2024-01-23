@@ -16,7 +16,7 @@ public class UserDaolmpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return  entityManager.createQuery("select user from User user ", User.class).getResultList();
+        return entityManager.createQuery("select user from User user ", User.class).getResultList();
     }
 
     @Override
@@ -30,13 +30,11 @@ public class UserDaolmpl implements UserDao {
     }
 
     @Override
-    public void updateUser(int id, User user) {
-        User user1 = entityManager.find(User.class, id);
-        if (user1 != null) {
-            user1.setName(user.getName());
-            user1.setSurname(user.getSurname());
-            entityManager.merge(user1);
-        }
+    public void updateUser(int id, User userUpdate) {
+        User user = getUser(id);
+        user.setName(userUpdate.getName());
+        user.setSurname(userUpdate.getSurname());
+        entityManager.merge(user);
     }
 
     @Override

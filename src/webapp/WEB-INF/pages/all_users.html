@@ -13,9 +13,10 @@
 <form th:action="@{/update_user}" th:method="GET">
     <button type="submit"> Update user </button>
 </form>
-<form th:method="delete" th:action="@{/delete_user}">
+<form th:action="@{/delete_user}" th:method="GET" >
     <button type="submit">Delete user</button>
 </form>
+
 <br>
 
 <table border="2">All users

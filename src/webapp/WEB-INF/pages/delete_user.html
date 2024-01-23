@@ -6,10 +6,19 @@
 </head>
 <body>
 
-<form th:method="DELETE" th:action="@{/delete_user}" th:object="${userDelete}" >
-    <input type="hidden" name="id" th:value="${deleteUser.getId()}">
-    <br>
-    <input type="submit" value="Delete user">
+
+<form th:method="POST" th:action="@{/delete_user}" th:object="${userD}" >
+    <label for="id">Enter ID: </label>
+    <input type="number" th:field="*{id}" id="id">
+    <br/>
+
+
+    <input type="submit" value="Delete user!">
+</form>
+<br>
+
+<form th:action="@{/}" th:method="GET" >
+    <button type="submit">All user</button>
 </form>
 
 </body>

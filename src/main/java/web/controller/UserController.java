@@ -33,7 +33,7 @@ public class UserController {
     //------------------------------  creat
     @GetMapping("/creat_user")
     public String getCreatUser(Model model) {
-         model.addAttribute("user", new User());
+        model.addAttribute("user", new User());
         return "creat_user";
     }
 
@@ -42,26 +42,37 @@ public class UserController {
         userService.addUser(user1);
         return "redirect:/";
     }
-    //------------------------------------- delete
- @GetMapping("/delete_user")
-    public String getWhatDeleteUser(@RequestParam("id") int userId, Model model) {
-        model.addAttribute("userDelete", userService.getUser(userId));
-        return "delete_user";
-    }
-    @DeleteMapping("/delete_user")
-    public String getDeleteUser(@RequestParam("id") int userId) {
-        userService.deleteUser(userId);
-        return "redirect:/";
-    }
     //-------------------------------------------- update
     @GetMapping("/update_user")
-    public String getWhatUpdateUser(@RequestParam("id") int userId, Model model) {
-        model.addAttribute("userUpdate", userService.getUser(userId));
+    public String getWhatUpdateUser(Model model) {
+        model.addAttribute("userU", new User());
         return "update_user";
     }
-    @PatchMapping("/update_user")
-    public String getUpdateUser(@RequestParam("id") int id, @ModelAttribute("userUpdate") @Valid User user1) {
-        userService.updateUser(id, user1);
+    @PostMapping("/update_user")
+    public String getUpdateUser(@ModelAttribute("userU") User user) {
+        try {
+            userService.updateUser(user.getId(), user);
+        } catch (Exception e) {
+            System.out.println("No this user!");
+        }
         return "redirect:/";
     }
+
+    //------------------------------------- delete
+    @GetMapping("/delete_user")
+    public String getWhatDeleteUser(Model model) {
+            model.addAttribute("userD", new User());
+        return "delete_user";
+    }
+     @PostMapping("/delete_user")
+    public String getDeleteUser(@ModelAttribute("userD") User user) {
+        try {
+            userService.deleteUser(user.getId());
+        } catch (Exception e) {
+            System.out.println("No this user!");
+        }
+
+        return "redirect:/";
+    }
+
 }
