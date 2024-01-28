@@ -24,7 +24,7 @@ public class UserController {
         this.userService = usersService;
     }
 
-    @GetMapping(value = "/")                            //index
+    @RequestMapping(value = "/")                            //index
     public String getAllUsers(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
@@ -37,11 +37,13 @@ public class UserController {
         return "creat_user";
     }
 
-    @PostMapping()
+    @PostMapping("/creat_user")
     public String getAddUser(@ModelAttribute("user") User user1) {
         userService.addUser(user1);
         return "redirect:/";
     }
+
+
     //-------------------------------------------- update
     @GetMapping("/update_user")
     public String getWhatUpdateUser(Model model) {
@@ -61,10 +63,10 @@ public class UserController {
     //------------------------------------- delete
     @GetMapping("/delete_user")
     public String getWhatDeleteUser(Model model) {
-            model.addAttribute("userD", new User());
+        model.addAttribute("userD", new User());
         return "delete_user";
     }
-     @PostMapping("/delete_user")
+    @PostMapping("/delete_user")
     public String getDeleteUser(@ModelAttribute("userD") User user) {
         try {
             userService.deleteUser(user.getId());
